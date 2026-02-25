@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ro" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Zone - Clinică Stomatologică Iași</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        orbitron: ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            primary: '#00AEEF',   
+                            dark: '#002F5D',      
+                            light: '#E6F7FC',     
+                            accent: '#FFD700',    
+                        }
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(0, 47, 93, 0.1)',
+                        'glow': '0 0 20px rgba(0, 174, 239, 0.3)',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Promo Bar Variables & Body Offset */
+        :root {
+            --promo-height: 40px;
+            --promo-safe-top: env(safe-area-inset-top, 0px);
+            --promo-total: calc(var(--promo-height) + var(--promo-safe-top));
+        }
+        
+        body { 
+            padding-top: var(--promo-total); 
+            background-color: #FAFAFA;
+            color: #002F5D;
+        }
+
+        /* Adjust Navbar to sit below Promo Bar */
+        #navbar {
+            top: var(--promo-total);
+        }
+
+        /* Promo Bar Styles */
+        .promo-bar {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;
+            background-color: #FDE047; color: #422006; height: var(--promo-height);
+            padding-top: var(--promo-safe-top); box-sizing: content-box; font-size: 13.5px; font-weight: 500;
+        }
+        .promo-container { height: 100%; max-width: 1240px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; }
+        .promo-desktop { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 15px; }
+        .promo-text { white-space: nowrap; }
+        .promo-text a { color: #854d0e; font-weight: 600; transition: color 0.2s; text-decoration: none;}
+        .promo-text a:hover { color: #a16207; }
+        .promo-btn {
+            background-color: #ca8a04; color: white; padding: 5px 14px; text-decoration: none;
+            border-radius: 20px; font-size: 13px; font-weight: 600; transition: all 0.3s;
+        }
+        .promo-btn:hover { background-color: #a16207; transform: scale(1.05); }
+
+        /* Promo Bar Mobile Styles */
+        .promo-mobile { display: none; width: 100%; align-items: center; justify-content: space-between; gap: 10px; font-size: 12px; }
+        .promo-mobile .truncate { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .promo-mobile .no-wrap { white-space: nowrap; flex-shrink: 0; }
+        .promo-mobile a { color: #854d0e; font-weight: 600; flex-shrink: 0; text-decoration: none;}
+
+        @media (max-width: 768px) {
+            .promo-desktop { display: none; }
+            .promo-mobile { display: flex; }
+        }
+
+        /* Existing Styles */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-dark {
+            background: rgba(0, 47, 93, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #002F5D 0%, #00AEEF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+            animation: float 10s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -20px) scale(1.1); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <div class="promo-bar">
+        <div class="promo-container">
+            <div class="promo-desktop">
+                <span class="promo-text">
+                    Concept demo • Conținut orientativ • Dezvoltat de sky.ro •
+                    <a href="mailto:dan.trifan@sky.ro">dan.trifan@sky.ro</a> •
+                    <a href="tel:+40720088880">+4 0720 088 880</a>
+                </span>
+                <a href="https://wa.me/40720088880" target="_blank" rel="noopener noreferrer" class="promo-btn">WhatsApp</a>
+            </div>
+            <div class="promo-mobile">
+                <div class="truncate">Concept demo</div>
+                <div class="no-wrap">Dezvoltat de sky.ro</div>
+                <a href="tel:+40720088880">+4 0720 088 880</a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="fixed w-full z-50 transition-all duration-300 pt-4 px-4" id="navbar">
+        <div class="bg-slate-800 max-w-7xl mx-auto rounded-full px-6 py-3 flex justify-between items-center shadow-glass">
+            
+            <a href="#" class="flex items-center group gap-2">
+                <img src="logo.png" alt="Dental Zone Logo" class="h-10 w-auto transition-transform duration-300 group-hover:scale-105">
+                <span class="font-orbitron text-xl font-normal text-white">Dental Zone</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8 font-medium text-sm text-white/80">
+                <a href="#tratamente" class="hover:text-brand-primary transition">Tratamente</a>
+                <a href="#tehnologie" class="hover:text-brand-primary transition">Tehnologie</a>
+                <a href="#rezultate" class="hover:text-brand-primary transition">Înainte & După</a>
+                <a href="#echipa" class="hover:text-brand-primary transition">Echipa</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="tel:0731322777" class="hidden lg:flex items-center gap-2 font-bold text-white text-sm">
+                    <i class="ph-fill ph-phone text-brand-primary"></i> 0731 322 777
+                </a>
+                
+                <a href="#contact" class="hidden md:inline-block bg-brand-primary hover:bg-brand-dark text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 shadow-glow transform hover:-translate-y-0.5">
+                    Programează Acum
+                </a>
+
+                <button class="block md:hidden text-white p-1 focus:outline-none hover:text-brand-primary transition">
+                    <i class="ph-bold ph-list text-3xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-24 pb-20 lg:pt-28 lg:pb-24 flex items-center">
+        <div class="blob bg-blue-200 w-96 h-96 top-0 left-0 -translate-x-1/2"></div>
+        <div class="blob bg-cyan-100 w-[500px] h-[500px] bottom-0 right-0 translate-x-1/3"></div>
+
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+            <div data-aos="fade-right">
+                
+                <h1 class="text-5xl lg:text-7xl font-orbitron font-normal leading-[1.1] mb-6 mt-4 text-brand-dark">
+                    Zâmbetul tău.<br>
+                    <span class="text-gradient">Perfecționat.</span>
+                </h1>
+                
+                <div class="block md:hidden relative rounded-[2rem] overflow-hidden shadow-xl border-4 border-white mb-8">
+                    <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Clinica Dental Zone" class="w-full h-auto object-cover">
+                </div>
+
+                <p class="hidden md:block text-lg text-slate-500 mb-10 leading-relaxed max-w-lg">
+                    Clinica Dental Zone a luat naștere din dorința de a oferi servicii stomatologice moderne, într-un cadru relaxant și prietenos. Oferim planuri de tratament interdisciplinare și transparente.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="flex items-center justify-center gap-3 bg-brand-dark text-white px-8 py-4 rounded-2xl font-semibold transition hover:scale-105 hover:shadow-xl hover:shadow-brand-dark/20">
+                        Consult Gratuit
+                        <i class="ph-bold ph-arrow-right"></i>
+                    </a>
+                    <a href="#rezultate" class="flex items-center justify-center gap-3 bg-white text-brand-dark border border-slate-200 px-8 py-4 rounded-2xl font-semibold transition hover:bg-slate-50 hover:border-brand-primary/30">
+                        <i class="ph-fill ph-images text-brand-primary"></i>
+                        Vezi Galeria
+                    </a>
+                </div>
+
+                <div class="mt-12 flex items-center gap-8 transition duration-500">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" class="h-6" alt="Google">
+                    <div class="flex text-yellow-500 text-sm">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <span class="font-bold text-sm text-slate-700">5.0/5 Rating</span>
+                </div>
+            </div>
+
+            <div class="relative hidden lg:block" data-aos="fade-left" data-aos-delay="200">
+                <div class="relative rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
+                    <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Clinica" class="w-full h-auto object-cover transition-transform duration-1000 hover:scale-105">
+                </div>
+
+                <div class="absolute -bottom-8 -left-8 glass p-4 rounded-2xl shadow-glass w-64 animate-bounce" style="animation-duration: 4s;">
+                    <div class="flex items-center gap-3 mb-2">
+                        <img src="https://i.pravatar.cc/150?img=32" class="w-10 h-10 rounded-full border-2 border-white" alt="User">
+                        <div>
+                            <p class="font-bold text-sm">Ana M.</p>
+                            <p class="text-xs text-brand-primary">Pacient Fațete</p>
+                        </div>
+                    </div>
+                    <p class="text-xs italic text-slate-600">"Cea mai bună experiență în Iași. Personalul este extrem de comunicativ!"</p>
+                </div>
+
+                <div class="absolute top-10 -right-10 bg-brand-dark text-white p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-pulse">
+                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                        <i class="ph-bold ph-credit-card text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm">Plată Flexibilă</p>
+                        <p class="text-xs text-slate-300">Acceptăm și rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tratamente" class="py-24 bg-brand-light/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-orbitron font-normal text-brand-dark mb-4">Tratamente de Top</h2>
+                <p class="text-slate-500 max-w-xl mx-auto">De la stomatologie generală la chirurgie maxilo-facială, acoperim toate nevoile tale sub un singur acoperiș.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-2 bg-brand-primary rounded-3xl p-8 md:p-12 text-white relative overflow-hidden group hover:shadow-glow transition duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="0">
+                    <div class="relative z-10">
+                        <i class="ph-duotone ph-sparkle text-6xl mb-6 text-white/80"></i>
+                        <h3 class="text-3xl font-orbitron font-normal mb-4">Estetică și Protetică Dentară</h3>
+                        <p class="text-blue-50 text-lg max-w-md mb-8">Redăm frumusețea și funcționalitatea zâmbetului folosind coroane dentare moderne, fațete și albire profesională.</p>
+                        <a href="#" class="inline-flex items-center gap-2 bg-white text-brand-primary px-6 py-3 rounded-xl font-bold hover:bg-brand-dark hover:text-white transition">
+                            Află Detalii <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="absolute right-0 bottom-0 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition duration-700"></div>
+                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="absolute top-0 right-0 h-full w-1/3 object-cover opacity-20 mix-blend-overlay hidden md:block transition-transform duration-1000 group-hover:scale-110">
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-brand-primary text-3xl mb-6 group-hover:scale-110 transition">
+                        <i class="ph-duotone ph-shield-check"></i>
+                    </div>
+                    <h3 class="text-xl font-orbitron font-normal text-brand-dark mb-2">Implantologie</h3>
+                    <p class="text-slate-500 text-sm mb-6">Restaurare completă și sigură. Soluții de implant dentar pe termen lung.</p>
+                    <div class="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="w-0 h-full bg-brand-primary group-hover:w-full transition-all duration-700"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-cyan-50 rounded-2xl flex items-center justify-center text-cyan-600 text-3xl mb-6 group-hover:scale-110 transition">
+                        <i class="ph-duotone ph-brackets-curly"></i>
+                    </div>
+                    <h3 class="text-xl font-orbitron font-normal text-brand-dark mb-2">Ortodonție</h3>
+                    <p class="text-slate-500 text-sm mb-6">Tratamente cu aparate dentare clasice și invizibile pentru alinieri perfecte.</p>
+                    <div class="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="w-0 h-full bg-cyan-500 group-hover:w-full transition-all duration-700"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300 group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-rose-50 rounded-2xl flex items-center justify-center text-rose-500 text-3xl mb-6 group-hover:scale-110 transition">
+                        <i class="ph-duotone ph-tooth"></i>
+                    </div>
+                    <h3 class="text-xl font-orbitron font-normal text-brand-dark mb-2">Endodonție</h3>
+                    <p class="text-slate-500 text-sm mb-6">Tratamente de canal precise și lipsite de durere pentru salvarea dintelui natural.</p>
+                    <div class="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="w-0 h-full bg-rose-500 group-hover:w-full transition-all duration-700"></div>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-1 bg-brand-dark rounded-3xl p-8 text-white flex flex-col justify-center items-center text-center hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="text-xl font-orbitron font-normal mb-2">Planuri Transparente</h3>
+                    <p class="text-slate-400 text-sm mb-6">Fiecare pacient cunoaște onorariile, etapele și durata la începutul tratamentului.</p>
+                    <button class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-brand-dark transition">
+                        <i class="ph-bold ph-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl md:text-5xl font-orbitron font-normal text-brand-dark mb-6">De ce pacienții aleg <span class="text-brand-primary">Dental Zone</span>?</h2>
+                    
+                    <div class="space-y-8">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex flex-shrink-0 items-center justify-center text-brand-primary text-xl">
+                                <i class="ph-fill ph-chat-centered-text"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-orbitron font-normal text-brand-dark">Comunicare Excelentă</h4>
+                                <p class="text-slate-500 mt-1">Ne dorim să înțelegem particularitățile fiecărui caz și să răspundem nevoilor tale specifice.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex flex-shrink-0 items-center justify-center text-brand-primary text-xl">
+                                <i class="ph-fill ph-users-three"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-orbitron font-normal text-brand-dark">Abordare Interdisciplinară</h4>
+                                <p class="text-slate-500 mt-1">Colaborăm eficient pentru a-ți asigura cele mai bune soluții pentru sănătatea orală.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex flex-shrink-0 items-center justify-center text-brand-primary text-xl">
+                                <i class="ph-fill ph-coffee"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-orbitron font-normal text-brand-dark">Atmosferă Relaxantă</h4>
+                                <p class="text-slate-500 mt-1">Te întâmpinăm într-un mediu prietenos, unde confortul tău este mereu o prioritate.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative mb-12 md:mb-0" data-aos="fade-left" data-aos-delay="100">
+                    <div class="absolute inset-0 bg-brand-primary/10 rounded-full blur-[100px]"></div>
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Clinica" class="relative z-10 rounded-3xl shadow-2xl transition duration-700 hover:scale-105">
+                    
+                    <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[85%] md:w-auto md:left-[-20px] md:translate-x-0 bg-white p-5 rounded-2xl shadow-xl z-20 md:max-w-xs border-l-4 border-brand-primary">
+                        <h4 class="text-2xl font-orbitron font-normal text-brand-dark mb-1">Modern</h4>
+                        <p class="text-slate-500 text-sm">Aparatură de ultimă generație pentru precizie maximă.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="echipa" class="py-24 bg-brand-dark relative overflow-hidden text-white">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-primary/30 rounded-full blur-[120px]"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-orbitron font-normal mb-4">Ce spun pacienții</h2>
+                <div class="w-20 h-1 bg-brand-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-dark p-8 rounded-3xl hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex gap-1 text-yellow-400 mb-4 text-sm">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-slate-300 italic mb-6">"Profesionalism desăvârșit. Am venit cu frică de dentist și am plecat zâmbind. Recomand cu toată încrederea echipa Dental Zone!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center font-bold">A</div>
+                        <div>
+                            <p class="font-bold">Andreea P.</p>
+                            <p class="text-xs text-slate-400">Iași</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-dark p-8 rounded-3xl hover:-translate-y-2 transition duration-300 bg-white/5" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex gap-1 text-yellow-400 mb-4 text-sm">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-slate-300 italic mb-6">"Prețurile sunt absolut corecte, iar medicii îți explică fiecare etapă. Faptul că poți plăti în rate e un mare plus!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center font-bold">M</div>
+                        <div>
+                            <p class="font-bold">Mihai S.</p>
+                            <p class="text-xs text-slate-400">Pașcani</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-dark p-8 rounded-3xl hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex gap-1 text-yellow-400 mb-4 text-sm">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-slate-300 italic mb-6">"Am făcut un implant dentar aici și recuperarea a fost foarte rapidă. Condițiile din clinică sunt excelente."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center font-bold">D</div>
+                        <div>
+                            <p class="font-bold">Daniel T.</p>
+                            <p class="text-xs text-slate-400">Miroslava</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 px-4">
+        <div class="max-w-6xl mx-auto bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-slate-100" data-aos="fade-up">
+            <div class="grid lg:grid-cols-2">
+                <div class="p-10 lg:p-16" data-aos="fade-right" data-aos-delay="100">
+                    <span class="text-brand-primary font-bold uppercase tracking-widest text-xs mb-2 block">Contact</span>
+                    <h2 class="text-3xl font-orbitron font-normal text-brand-dark mb-8">Programează o vizită</h2>
+                    
+                    <form class="space-y-5">
+                        <div class="grid grid-cols-2 gap-5">
+                            <input type="text" placeholder="Nume" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-4 outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition">
+                            <input type="tel" placeholder="Telefon" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-4 outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition">
+                        </div>
+                        <input type="email" placeholder="Email" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-4 outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition">
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="service" class="peer sr-only">
+                                <div class="border border-slate-200 rounded-xl p-3 text-center text-sm font-medium text-slate-500 peer-checked:bg-brand-primary peer-checked:text-white peer-checked:border-brand-primary transition">
+                                    Consultație
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="service" class="peer sr-only">
+                                <div class="border border-slate-200 rounded-xl p-3 text-center text-sm font-medium text-slate-500 peer-checked:bg-brand-primary peer-checked:text-white peer-checked:border-brand-primary transition">
+                                    Igienizare
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="service" class="peer sr-only">
+                                <div class="border border-slate-200 rounded-xl p-3 text-center text-sm font-medium text-slate-500 peer-checked:bg-brand-primary peer-checked:text-white peer-checked:border-brand-primary transition">
+                                    Estetică
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="service" class="peer sr-only">
+                                <div class="border border-slate-200 rounded-xl p-3 text-center text-sm font-medium text-slate-500 peer-checked:bg-brand-primary peer-checked:text-white peer-checked:border-brand-primary transition">
+                                    Implant
+                                </div>
+                            </label>
+                        </div>
+
+                        <button class="w-full bg-brand-primary hover:bg-brand-dark text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-primary/30 transition transform hover:-translate-y-1">
+                            Trimite Solicitarea
+                        </button>
+                    </form>
+                </div>
+
+                <div class="bg-slate-50 p-10 lg:p-16 flex flex-col justify-between relative overflow-hidden" data-aos="fade-left" data-aos-delay="200">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-brand-primary/10 rounded-full blur-3xl"></div>
+                    
+                    <div>
+                        <h3 class="text-xl font-orbitron font-normal text-brand-dark mb-8">Informații de contact</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-white rounded-lg shadow-sm flex items-center justify-center text-brand-primary shrink-0">
+                                    <i class="ph-bold ph-map-pin"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-brand-dark">Adresa</p>
+                                    <p class="text-slate-500 text-sm">Strada Nufarului 9 bloc, soleia 7, 707410 Valea Lupului</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-white rounded-lg shadow-sm flex items-center justify-center text-brand-primary shrink-0">
+                                    <i class="ph-bold ph-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-brand-dark">Telefon</p>
+                                    <p class="text-slate-500 text-sm">0731 322 777</p>
+                                </div>
+                            </div>
+                            
+                             <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-white rounded-lg shadow-sm flex items-center justify-center text-brand-primary shrink-0">
+                                    <i class="ph-bold ph-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-brand-dark">Email</p>
+                                    <p class="text-slate-500 text-sm">contact@dentalzone.ro</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-white rounded-lg shadow-sm flex items-center justify-center text-brand-primary shrink-0">
+                                    <i class="ph-bold ph-clock"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-brand-dark">Program</p>
+                                    <p class="text-slate-500 text-sm">Deschis 24 de ore</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 h-48 rounded-2xl overflow-hidden shadow-inner bg-slate-200">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2577.5682031368606!2d27.5162113!3d47.182466899999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40cae57fa8a4d66f%3A0xb4b2b76646c0da43!2sDental%20Zone%20Clinic%20-%20Valea%20Lupului!5e1!3m2!1sen!2sro!4v1772021273103!5m2!1sen!2sro" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-800 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <img src="logo.png" alt="Dental Zone Logo" class="h-8 w-auto">
+                <span class="font-orbitron text-lg font-normal text-white">Dental Zone</span>
+            </div>
+            
+            <div class="text-sm text-white/60">
+                © 2026 Dental Zone Clinic. Toate drepturile rezervate.
+            </div>
+
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-brand-primary hover:text-white transition"><i class="ph-fill ph-facebook-logo"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-brand-primary hover:text-white transition"><i class="ph-fill ph-instagram-logo"></i></a>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 mt-8 pt-8 border-t border-white/10 flex justify-center items-center gap-2">
+            <span class="text-sm text-white/50">Crafted in the clouds by</span>
+            <a href="https://sky.ro" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition">
+                <img src="skyro.png" alt="Sky.ro" class="h-6 w-auto">
+            </a>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/40720088880" target="_blank" rel="noopener noreferrer" aria-label="Chat pe WhatsApp" style="position: fixed; bottom: 24px; right: 24px; z-index: 50; display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; background-color: #25D366; color: white; border-radius: 9999px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); transition: all 0.3s;" onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='scale(1)';">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width: 32px; height: 32px;">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inițializare AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Sticky Nav logic for Glass effect (Ajustat)
+        const nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2');
+                nav.classList.remove('pt-4');
+            } else {
+                nav.classList.remove('py-2');
+                nav.classList.add('pt-4');
+            }
+        });
+    </script>
+</body>
+</html>
